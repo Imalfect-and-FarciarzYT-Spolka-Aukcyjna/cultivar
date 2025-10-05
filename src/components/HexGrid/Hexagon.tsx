@@ -8,7 +8,7 @@ export function Hexagon({ field, size, isSelected, onSelect }: HexagonProps) {
 
 	const opacity = field.owned ? (isSelected ? 1 : isHovered ? 0.95 : 0.8) : isHovered ? 0.7 : 0.5;
 	const strokeWidth = isSelected ? 2 : field.owned ? 0.5 : 1.5;
-	const stroke = isSelected ? '#ffff00' : field.owned ? '#000000' : '#666666';
+	const stroke = isSelected ? 'oklch(0.45 0.0271 146.9867)' : field.owned ? '#000000' : '#666666';
 	const fill = field.owned ? field.conditionColor : '#e0e0e0';
 	const { x, y } = hexToPixel(field.coordinates.q, field.coordinates.r, size);
 

@@ -35,26 +35,26 @@ export function AlertCenter() {
 	const getAlertIcon = (type: string) => {
 		switch (type) {
 			case 'warning':
-				return <AlertCircle className="h-4 w-4 text-yellow-500" />;
+				return <AlertCircle className="h-4 w-4" />;
 			case 'success':
-				return <CheckCircle className="h-4 w-4 text-green-500" />;
+				return <CheckCircle className="h-4 w-4" />;
 			case 'nasa_insight':
-				return <Satellite className="h-4 w-4 text-blue-500" />;
+				return <Satellite className="h-4 w-4" />;
 			default:
-				return <Info className="h-4 w-4 text-blue-400" />;
+				return <Info className="h-4 w-4" />;
 		}
 	};
 
 	const getAlertColor = (type: string) => {
 		switch (type) {
 			case 'warning':
-				return 'border-l-4 border-l-yellow-500 bg-yellow-500/5';
+				return 'border-l-4 border-l-destructive';
 			case 'success':
-				return 'border-l-4 border-l-green-500 bg-green-500/5';
+				return 'border-l-4 border-l-primary';
 			case 'nasa_insight':
-				return 'border-l-4 border-l-blue-500 bg-blue-500/5';
+				return 'border-l-4 border-l-primary';
 			default:
-				return 'border-l-4 border-l-blue-400 bg-blue-400/5';
+				return 'border-l-4 border-l-muted-foreground';
 		}
 	};
 
@@ -68,11 +68,12 @@ export function AlertCenter() {
 				>
 					<Button variant="secondary" size="lg" className="relative w-full">
 						<Bell className="h-5 w-5" />
+						<span className="ml-2">Notifications</span>
 						{unreadCount > 0 && (
 							<motion.div
 								initial={{ scale: 0 }}
 								animate={{ scale: 1 }}
-								className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white"
+								className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white"
 							>
 								{unreadCount > 9 ? '9+' : unreadCount}
 							</motion.div>
@@ -188,7 +189,7 @@ export function AlertCenter() {
 				</ScrollArea>
 
 				{/* Footer Stats */}
-				<div className="bg-muted/50 border-t p-3">
+				<div className="border-t p-3">
 					<div className="grid grid-cols-3 gap-2 text-center text-xs">
 						<div>
 							<div className="text-muted-foreground font-semibold">Total</div>

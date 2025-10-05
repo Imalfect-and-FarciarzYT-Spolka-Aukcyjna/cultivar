@@ -8,6 +8,7 @@ import { Plant } from '@/types/plant';
 import { Satellite, Store } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { AlertCenter } from './GameUI/AlertCenter';
+import { BobAssistant } from './GameUI/BobAssistant';
 import { HexagonInfoPanel } from './GameUI/HexagonInfoPanel';
 import { TimeControlTab } from './GameUI/TimeControlTab';
 import { UserBalanceTab } from './GameUI/UserBalanceTab';
@@ -52,6 +53,7 @@ export default function HexPlace() {
 	const [storeOpen, setStoreOpen] = useState(false);
 	const [nasaDashboardOpen, setNasaDashboardOpen] = useState(false);
 	const [pendingAction, setPendingAction] = useState<'plant' | 'water' | 'fertilize' | null>(null);
+	const [isAdvancingTime, setIsAdvancingTime] = useState(false);
 
 	// Generate all fields on mount and initialize the store
 	const [fields] = useState<Field[]>(() => {
@@ -119,8 +121,8 @@ export default function HexPlace() {
 
 	const [timeData, setTimeData] = useState<TimeData>({
 		day: currentDay,
-		month: 'October',
-		year: 2025,
+		month: 'April',
+		year: 2024,
 		hour: 14,
 		season: currentSeason
 	});
@@ -134,14 +136,24 @@ export default function HexPlace() {
 	};
 
 	const handleAdvanceDay = async () => {
-		await advanceDayWithAI();
-		setTimeData((prev) => ({ ...prev, day: currentDay + 1 }));
+		setIsAdvancingTime(true);
+		try {
+			await advanceDayWithAI();
+			setTimeData((prev) => ({ ...prev, day: currentDay + 1 }));
+		} finally {
+			setIsAdvancingTime(false);
+		}
 	};
 
 	const handleAdvanceWeek = async () => {
-		// Make a single batched AI request for 7 days instead of 7 separate calls
-		await advanceDayWithAI(7);
-		setTimeData((prev) => ({ ...prev, day: currentDay + 7 }));
+		setIsAdvancingTime(true);
+		try {
+			// Make a single batched AI request for 7 days instead of 7 separate calls
+			await advanceDayWithAI(7);
+			setTimeData((prev) => ({ ...prev, day: currentDay + 7 }));
+		} finally {
+			setIsAdvancingTime(false);
+		}
 	};
 
 	const handleAdvanceMonth = () => {
@@ -261,7 +273,7 @@ export default function HexPlace() {
 	return (
 		<div className="relative h-full w-full">
 			{/* Left sidebar */}
-			<div className="pointer-events-none absolute left-4 top-4 z-10 flex w-80 flex-col gap-4">
+			<div className="pointer-events-none absolute top-4 left-4 z-10 flex w-80 flex-col gap-4">
 				<div className="pointer-events-auto">
 					<WeatherTab data={weatherData} />
 				</div>
@@ -274,6 +286,7 @@ export default function HexPlace() {
 						onAdvanceDay={handleAdvanceDay}
 						onAdvanceWeek={handleAdvanceWeek}
 						onAdvanceMonth={handleAdvanceMonth}
+						isLoading={isAdvancingTime}
 					/>
 				</div>
 
@@ -331,6 +344,9 @@ export default function HexPlace() {
 				onHexagonSelect={handleFieldSelect}
 				onHexagonDeselect={handleFieldDeselect}
 			/>
+
+			{/* Bob the Farmer Assistant */}
+			<BobAssistant />
 		</div>
 	);
 }

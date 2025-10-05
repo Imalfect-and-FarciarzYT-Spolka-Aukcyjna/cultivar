@@ -204,7 +204,7 @@ export const useGameStore = create<GameState>((set, get) => ({
 		temperature: 20,
 		rainfall: 2.5,
 		humidity: 65,
-		windSpeed: 12,
+		windSpeed: 2,
 		uvIndex: 6
 	},
 	dailyWeatherHistory: new Map(),
@@ -316,15 +316,12 @@ export const useGameStore = create<GameState>((set, get) => ({
 			const field = newFields.get(change.fieldId);
 			if (!field || !field.plant) return;
 
-			// Apply growth
+			// Apply growth using the new advanceGrowth method
 			if (
 				change.growthIncrease > 0 &&
 				field.plant.currentGrowthStage < field.plant.data.growthStages
 			) {
-				const stageProgress =
-					(field.plant.currentGrowthStage * 100 + change.growthIncrease) / field.plant.data.growthStages;
-				const newStage = Math.floor((stageProgress / 100) * field.plant.data.growthStages);
-				field.plant.currentGrowthStage = Math.min(newStage, field.plant.data.growthStages);
+				field.plant.advanceGrowth(change.growthIncrease);
 			}
 
 			// Apply health change
@@ -694,6 +691,15 @@ export const useGameStore = create<GameState>((set, get) => ({
 				}
 			};
 		});
+
+		// Update all plants and fields for the new day
+		const state = get();
+		const newFields = new Map(state.fields);
+		newFields.forEach((field) => {
+			field.dailyUpdate(); // This calls plant.dailyUpdate() if plant exists
+		});
+		set({ fields: newFields, fieldUpdateCounter: state.fieldUpdateCounter + 1 });
+
 		get().updateWeather();
 	},
 
@@ -895,7 +901,7 @@ export const useGameStore = create<GameState>((set, get) => ({
 				temperature,
 				rainfall: precipitation,
 				humidity: 40 + precipitation * 3, // Higher rain = higher humidity
-				windSpeed: condition === 'stormy' ? 30 + Math.random() * 40 : 5 + Math.random() * 25,
+				windSpeed: 2,
 				uvIndex:
 					condition === 'sunny' ? 7 + Math.floor(Math.random() * 4) : Math.floor(Math.random() * 5)
 			},
@@ -916,7 +922,7 @@ export const useGameStore = create<GameState>((set, get) => ({
 				temperature: 20,
 				rainfall: 2.5,
 				humidity: 65,
-				windSpeed: 12,
+				windSpeed: 2,
 				uvIndex: 6
 			},
 			dailyWeatherHistory: new Map(),

@@ -120,7 +120,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 			<DialogContent className="max-h-[90vh] w-full max-w-[90vw] overflow-y-auto sm:max-w-[90vw]">
 				<DialogHeader>
 					<DialogTitle className="flex items-center gap-2">
-						<Sparkles className="h-5 w-5 text-purple-500" />
+						<Sparkles className="h-5 w-5" />
 						🛰️ NASA Space Farm Dashboard
 					</DialogTitle>
 					<DialogDescription>
@@ -146,31 +146,31 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 					</div>
 
 					<TabsContent value="overview" className="space-y-4">
-						<Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50">
+						<Card>
 							<CardHeader className="pb-3">
 								<CardTitle className="flex items-center gap-2 text-sm">
-									<Sprout className="h-4 w-4 text-green-600" />
+									<Sprout className="h-4 w-4" />
 									🌾 Farm Status
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<div className="space-y-2">
 									<div className="flex items-center gap-2">
-										<CheckCircle2 className="h-4 w-4 text-green-600" />
+										<CheckCircle2 className="h-4 w-4" />
 										<span className="text-sm">Health: {mockData.plantStress.overallHealth}% 💪</span>
 									</div>
 									<div className="flex items-center gap-2">
-										<AlertTriangle className="h-4 w-4 text-yellow-600" />
+										<AlertTriangle className="h-4 w-4" />
 										<span className="text-sm">{mockData.plantStress.criticalFields} fields need love ❤️</span>
 									</div>
 								</div>
 							</CardContent>
 						</Card>
 
-						<Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50">
+						<Card>
 							<CardHeader>
 								<CardTitle className="flex items-center gap-2 text-sm">
-									<Satellite className="h-4 w-4 text-blue-600" />
+									<Satellite className="h-4 w-4" />
 									🛰️ Active NASA Satellites
 								</CardTitle>
 								<CardDescription>Your space helpers monitoring from orbit!</CardDescription>
@@ -180,44 +180,44 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									{mockData.unlockedSatellites.map((sat) => (
 										<div
 											key={sat}
-											className="flex items-center gap-3 rounded-lg border-2 border-blue-200 bg-white p-3 shadow-sm transition-all hover:scale-105 hover:shadow-md"
+											className="flex items-center gap-3 rounded-lg border p-3 transition-all hover:scale-105 hover:shadow-md"
 										>
-											<Satellite className="h-5 w-5 text-blue-600" />
+											<Satellite className="h-5 w-5" />
 											<div className="flex-1">
 												<p className="text-sm font-medium">{sat}</p>
 												<p className="text-muted-foreground text-xs">✨ Active & watching</p>
 											</div>
-											<Zap className="h-4 w-4 text-green-600" />
+											<Zap className="h-4 w-4" />
 										</div>
 									))}
 								</div>
 							</CardContent>
 						</Card>
 
-						<Card className="border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50">
+						<Card>
 							<CardHeader>
 								<CardTitle className="flex items-center gap-2 text-sm">
-									<Sparkles className="h-4 w-4 text-purple-600" />✨ Priority Insights
+									<Sparkles className="h-4 w-4" />✨ Priority Insights
 								</CardTitle>
 								<CardDescription>AI-powered recommendations from space!</CardDescription>
 							</CardHeader>
 							<CardContent className="space-y-3">
-								<div className="flex items-start gap-3 rounded-lg border-2 border-yellow-300 bg-yellow-50 p-3 shadow-sm">
-									<AlertTriangle className="mt-0.5 h-5 w-5 text-yellow-600" />
+								<div className="flex items-start gap-3 rounded-lg border p-3">
+									<AlertTriangle className="mt-0.5 h-5 w-5" />
 									<div className="flex-1">
 										<p className="text-sm font-medium">{mockData.soilMoisture.recommendation}</p>
 										<p className="text-muted-foreground mt-1 text-xs">📡 SMAP Soil Moisture</p>
 									</div>
 								</div>
-								<div className="flex items-start gap-3 rounded-lg border-2 border-blue-300 bg-blue-50 p-3 shadow-sm">
-									<Droplets className="mt-0.5 h-5 w-5 text-blue-600" />
+								<div className="flex items-start gap-3 rounded-lg border p-3">
+									<Droplets className="mt-0.5 h-5 w-5" />
 									<div className="flex-1">
 										<p className="text-sm font-medium">{mockData.precipitation.recommendation}</p>
 										<p className="text-muted-foreground mt-1 text-xs">🌧️ GPM Precipitation</p>
 									</div>
 								</div>
-								<div className="flex items-start gap-3 rounded-lg border-2 border-orange-300 bg-orange-50 p-3 shadow-sm">
-									<Thermometer className="mt-0.5 h-5 w-5 text-orange-600" />
+								<div className="flex items-start gap-3 rounded-lg border p-3">
+									<Thermometer className="mt-0.5 h-5 w-5" />
 									<div className="flex-1">
 										<p className="text-sm font-medium">{mockData.temperature.recommendation}</p>
 										<p className="text-muted-foreground mt-1 text-xs">🌡️ MODIS Temperature</p>
@@ -228,12 +228,12 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 					</TabsContent>
 
 					<TabsContent value="soil" className="space-y-4">
-						<Card className="border-2 border-blue-200">
+						<Card>
 							<CardHeader>
 								<div className="flex items-start justify-between">
 									<div>
 										<CardTitle className="flex items-center gap-2">
-											<Droplets className="h-5 w-5 text-blue-600" />
+											<Droplets className="h-5 w-5" />
 											💧 Soil Moisture (SMAP)
 										</CardTitle>
 										<CardDescription>
@@ -276,7 +276,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 										{mockData.soilMoisture.forecast.map((value, idx) => (
 											<div key={idx} className="flex flex-1 flex-col items-center gap-1">
 												<div
-													className="w-full rounded-t-lg bg-gradient-to-t from-blue-500 to-blue-400 shadow-sm transition-all hover:scale-105"
+													className="bg-primary w-full rounded-t-lg transition-all hover:scale-105"
 													style={{ height: `${(value / 100) * 160}px` }}
 												/>
 												<p className="text-muted-foreground text-xs">{value}%</p>
@@ -285,16 +285,16 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									</div>
 								</div>
 
-								<div className="rounded-lg border-2 border-blue-300 bg-blue-50 p-3">
+								<div className="rounded-lg border p-3">
 									<p className="text-sm font-medium">💡 {mockData.soilMoisture.recommendation}</p>
 								</div>
 							</CardContent>
 						</Card>
 
-						<Card className="border-2 border-orange-200">
+						<Card>
 							<CardHeader>
 								<CardTitle className="flex items-center gap-2">
-									<Activity className="h-5 w-5 text-orange-600" />
+									<Activity className="h-5 w-5" />
 									🌡️ Plant Water Stress (ECOSTRESS)
 								</CardTitle>
 								<CardDescription>
@@ -320,7 +320,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									</div>
 								</div>
 
-								<div className="rounded-lg border-2 border-orange-300 bg-orange-50 p-3">
+								<div className="rounded-lg border p-3">
 									<p className="text-sm font-medium">💡 {mockData.plantStress.recommendation}</p>
 								</div>
 							</CardContent>
@@ -328,12 +328,12 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 					</TabsContent>
 
 					<TabsContent value="crops" className="space-y-4">
-						<Card className="border-2 border-green-200">
+						<Card>
 							<CardHeader>
 								<div className="flex items-start justify-between">
 									<div>
 										<CardTitle className="flex items-center gap-2">
-											<Sprout className="h-5 w-5 text-green-600" />
+											<Sprout className="h-5 w-5" />
 											🌱 NDVI - Vegetation Index (Landsat 8)
 										</CardTitle>
 										<CardDescription>30m resolution • Updated {mockData.ndvi.lastUpdate}</CardDescription>
@@ -371,16 +371,16 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									</div>
 								</div>
 
-								<div className="rounded-lg border-2 border-green-300 bg-green-50 p-3">
+								<div className="rounded-lg border p-3">
 									<p className="text-sm font-medium">💡 {mockData.ndvi.recommendation}</p>
 								</div>
 							</CardContent>
 						</Card>
 
-						<Card className="border-2 border-yellow-200">
+						<Card>
 							<CardHeader>
 								<CardTitle className="flex items-center gap-2">
-									<AlertTriangle className="h-5 w-5 text-yellow-600" />
+									<AlertTriangle className="h-5 w-5" />
 									🐛 Pest & Disease Risk (Multi-Source AI)
 								</CardTitle>
 								<CardDescription>
@@ -409,7 +409,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 										{mockData.pestRisk.factors.map((factor) => (
 											<div
 												key={factor.name}
-												className="flex items-center justify-between rounded-lg border-2 p-2"
+												className="flex items-center justify-between rounded-lg border p-2"
 											>
 												<span className="text-sm">{factor.name}</span>
 												<div className="flex items-center gap-2">
@@ -426,7 +426,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									</div>
 								</div>
 
-								<div className="rounded-lg border-2 border-yellow-300 bg-yellow-50 p-3">
+								<div className="rounded-lg border p-3">
 									<p className="text-sm font-medium">💡 {mockData.pestRisk.recommendation}</p>
 								</div>
 							</CardContent>
@@ -434,12 +434,12 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 					</TabsContent>
 
 					<TabsContent value="weather" className="space-y-4">
-						<Card className="border-2 border-red-200">
+						<Card>
 							<CardHeader>
 								<div className="flex items-start justify-between">
 									<div>
 										<CardTitle className="flex items-center gap-2">
-											<Thermometer className="h-5 w-5 text-red-600" />
+											<Thermometer className="h-5 w-5" />
 											🌡️ Surface Temperature (MODIS)
 										</CardTitle>
 										<CardDescription>
@@ -460,7 +460,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									</div>
 									<div className="text-right">
 										<p className="text-muted-foreground text-sm">⚠️ Extreme Risk</p>
-										<p className="text-2xl font-bold text-orange-600">{mockData.temperature.extremeRisk}%</p>
+										<p className="text-2xl font-bold">{mockData.temperature.extremeRisk}%</p>
 									</div>
 								</div>
 
@@ -472,13 +472,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 										{mockData.temperature.forecast.map((temp, idx) => (
 											<div key={idx} className="flex flex-1 flex-col items-center gap-1">
 												<div
-													className={`w-full rounded-t-lg shadow-sm transition-all hover:scale-105 ${
-														temp > 30
-															? 'bg-gradient-to-t from-red-500 to-red-400'
-															: temp > 25
-																? 'bg-gradient-to-t from-orange-500 to-orange-400'
-																: 'bg-gradient-to-t from-green-500 to-green-400'
-													}`}
+													className="bg-primary w-full rounded-t-lg transition-all hover:scale-105"
 													style={{ height: `${(temp / 35) * 160}px` }}
 												/>
 												<p className="text-muted-foreground text-xs">{temp}°C</p>
@@ -487,16 +481,16 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									</div>
 								</div>
 
-								<div className="rounded-lg border-2 border-orange-300 bg-orange-50 p-3">
+								<div className="rounded-lg border p-3">
 									<p className="text-sm font-medium">💡 {mockData.temperature.recommendation}</p>
 								</div>
 							</CardContent>
 						</Card>
 
-						<Card className="border-2 border-blue-200">
+						<Card>
 							<CardHeader>
 								<CardTitle className="flex items-center gap-2">
-									<Cloud className="h-5 w-5 text-blue-600" />
+									<Cloud className="h-5 w-5" />
 									🌧️ Precipitation (GPM)
 								</CardTitle>
 								<CardDescription>
@@ -523,7 +517,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 										{mockData.precipitation.probability.map((prob, idx) => (
 											<div key={idx} className="flex flex-1 flex-col items-center gap-1">
 												<div
-													className="w-full rounded-t-lg bg-gradient-to-t from-blue-500 to-blue-400 shadow-sm transition-all hover:scale-105"
+													className="bg-primary w-full rounded-t-lg transition-all hover:scale-105"
 													style={{ height: `${(prob / 100) * 160}px` }}
 												/>
 												<div className="text-center">
@@ -535,7 +529,7 @@ export function NASADashboard({ open, onClose }: NASADashboardProps) {
 									</div>
 								</div>
 
-								<div className="rounded-lg border-2 border-blue-300 bg-blue-50 p-3">
+								<div className="rounded-lg border p-3">
 									<p className="text-sm font-medium">💡 {mockData.precipitation.recommendation}</p>
 								</div>
 							</CardContent>
